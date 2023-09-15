@@ -204,7 +204,7 @@ Transform:
   m_GameObject: {fileID: 368762389}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.060742885, y: -0.09774548, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.35, y: 0.35, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -243,7 +243,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5ca572c0c797b84eabef7425f35fead, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _tapForce: 100
+  _startPosition: {x: -1, y: 0}
+  _speed: 0
+  _tapForce: 10
+  _rotationSpeed: 1
+  _maxRotationZ: 25
+  _minRotationZ: -25
 --- !u!50 &368762394
 Rigidbody2D:
   serializedVersion: 4
