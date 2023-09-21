@@ -28,9 +28,10 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space)
+            && Time.timeScale > 0)
         {
-            _rigidbody.velocity = new Vector2(0, 0);
+            _rigidbody.velocity = Vector2.zero;
             transform.rotation = _maxRotation;
             _rigidbody.AddForce(Vector2.up * _tapForce, ForceMode2D.Impulse);
         }
@@ -38,8 +39,9 @@ public class PlayerMovement : MonoBehaviour
         transform.rotation = Quaternion.Lerp(transform.rotation, _minRotation, _rotationSpeed * Time.deltaTime);
     }
 
-    public void ResetPosition()
+    public void ResetMovement()
     {
-        transform.position = _initialPosition;
+        transform.SetPositionAndRotation(_initialPosition, Quaternion.Euler(Vector3.zero));
+        _rigidbody.velocity = Vector2.zero;
     }
 }
