@@ -471,7 +471,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _bulletSpawnPoint: {fileID: 963425940}
-  _shootDirectionPoint: {fileID: 65325678}
+  _bulletDirectionPoint: {fileID: 65325678}
   _bulletSpawner: {fileID: 1706430163}
 --- !u!60 &368762398
 PolygonCollider2D:
@@ -1540,6 +1540,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _bulletSpawnPoint: {fileID: 1565073655}
+  _bulletDirectionPoint: {fileID: 937950824}
   _timeBetweenShots: 0.3
   _shootDirectionPoint: {fileID: 937950824}
   _bulletSpawner: {fileID: 1041462121}
