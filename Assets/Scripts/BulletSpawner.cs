@@ -19,15 +19,16 @@ public class BulletSpawner : ObjectPool
         _regularDisabling ??= StartCoroutine(Disabling());
     }
 
-    public void LaunchBullet(Vector3 spawnPosition, Vector3 target)
+    public void LaunchBullet(Vector2 spawnPosition, Vector2 moveDirectionPoint)
     {
         if (TryGetObject(out GameObject result))
         {
             result.SetActive(true);
             result.transform.position = spawnPosition;
 
-            Vector2 direction = target - spawnPosition;
-            result.GetComponent<Mover>().SetDirection(direction);
+            result
+                .GetComponent<Mover>()
+                .SetDirection(moveDirectionPoint - spawnPosition);
         }
     }
 

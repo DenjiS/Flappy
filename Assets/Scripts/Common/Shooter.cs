@@ -1,21 +1,19 @@
 using UnityEngine;
 
-public abstract 
-    class Shooter : MonoBehaviour
+public abstract class Shooter : MonoBehaviour
 {
     [SerializeField] private Transform _bulletSpawnPoint;
+    [SerializeField] private Transform _bulletDirectionPoint;
 
-    private Transform _target;
     private BulletSpawner _bullets;
 
-    protected void InitializeShooter(Transform target, BulletSpawner bullets)
+    public void InitializeShooter(BulletSpawner bullets)
     {
-        _target = target;
         _bullets = bullets;
     }
 
     protected void Shoot()
     {
-        _bullets.LaunchBullet(_bulletSpawnPoint.position, _target.position);
+        _bullets.LaunchBullet(_bulletSpawnPoint.position, _bulletDirectionPoint.position);
     }
 }

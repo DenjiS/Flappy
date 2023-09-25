@@ -7,6 +7,6 @@ public class TopBorderShooter : TimedShooter
 
     private void Start()
     {
-        InitializeShooter(_shootDirectionPoint, _bulletSpawner);
+        InitializeShooter(_bulletSpawner);
     }
 }

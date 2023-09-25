@@ -4,7 +4,6 @@ using UnityEngine.Events;
 [RequireComponent(typeof(PlayerMovement))]
 public class Player : Shooter, IMortal
 {
-    [SerializeField] private Transform _shootDirectionPoint;
     [SerializeField] private BulletSpawner _bulletSpawner;
 
     private PlayerMovement _movement;
@@ -17,7 +16,7 @@ public class Player : Shooter, IMortal
     {
         _movement = GetComponent<PlayerMovement>();
 
-        InitializeShooter(_shootDirectionPoint, _bulletSpawner);
+        InitializeShooter(_bulletSpawner);
     }
 
     private void Update()

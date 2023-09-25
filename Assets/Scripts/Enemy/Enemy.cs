@@ -1,28 +1,12 @@
-using UnityEngine;
+using UnityEngine.Events;
 
 public class Enemy : TimedShooter, IMortal
 {
-    [SerializeField] private float _minXShootRange;
-
-    private Player _player;
-
-    protected override void Update()
-    {
-        if (transform.position.x - _player.transform.position.x > _minXShootRange)
-        {
-            base.Update();
-        }
-    }
-
-    public void Init(Player player, BulletSpawner bullets)
-    {
-        InitializeShooter(player.transform, bullets);
-        _player = player;
-    }
+    public event UnityAction Died;
 
     public void Die()
     {
-        _player.IncreaseScore();
+        Died?.Invoke();
         gameObject.SetActive(false);
     }
 }

@@ -12,37 +12,32 @@ public class EnemySpawner : ObjectPool
     [SerializeField] private float _maxSpawnPositionY;
     [SerializeField] private float _minSpawnPositionY;
 
-    private WaitForSeconds _spawningDelay;
-
-    private Coroutine _spawning;
-
-    protected override void Awake()
-    {
-        base.Awake();
-
-        _spawningDelay = new WaitForSeconds(_secondsBetweenSpawn);
-    }
+    private float _elapsed = 0;
 
     private void Update()
     {
-        _spawning ??= StartCoroutine(Spawning());
+        _elapsed += Time.deltaTime;
+
+        if (_elapsed > _secondsBetweenSpawn)
+        {
+            Spawn();
+            _elapsed = 0;
+        }
     }
 
     protected override void ConfigureOnCreation(GameObject instance)
     {
-        instance
-            .GetComponent<Enemy>()
-            .Init(_player, _bulletSpawner);
+        Enemy enemy = instance.GetComponent<Enemy>();
+        enemy.Died += _player.IncreaseScore;
+        enemy.InitializeShooter(_bulletSpawner);
 
         instance
             .GetComponent<Mover>()
             .SetDirection(Vector2.left);
     }
 
-    private IEnumerator Spawning()
+    private void Spawn()
     {
-        yield return _spawningDelay;
-
         if (TryGetObject(out GameObject result))
         {
             result.SetActive(true);
@@ -53,7 +48,5 @@ public class EnemySpawner : ObjectPool
         }
 
         DisableObjectsAbroadScreen();
-
-        _spawning = null;
     }
 }
