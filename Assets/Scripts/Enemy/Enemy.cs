@@ -1,12 +1,16 @@
-using UnityEngine.Events;
-
 public class Enemy : TimedShooter, IMortal
 {
-    public event UnityAction Died;
+    private Player _player;
+
+    public void Initialize(Player player, BulletSpawner bullets)
+    {
+        _player = player;
+        InitializeShooter(bullets);
+    }
 
     public void Die()
     {
-        Died?.Invoke();
+        _player.IncreaseScore();
         gameObject.SetActive(false);
     }
 }

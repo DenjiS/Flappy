@@ -7,7 +7,7 @@ public abstract class Shooter : MonoBehaviour
 
     private BulletSpawner _bullets;
 
-    public void InitializeShooter(BulletSpawner bullets)
+    protected void InitializeShooter(BulletSpawner bullets)
     {
         _bullets = bullets;
     }

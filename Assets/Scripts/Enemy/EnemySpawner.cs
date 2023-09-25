@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 
 public class EnemySpawner : ObjectPool
@@ -28,8 +27,7 @@ public class EnemySpawner : ObjectPool
     protected override void ConfigureOnCreation(GameObject instance)
     {
         Enemy enemy = instance.GetComponent<Enemy>();
-        enemy.Died += _player.IncreaseScore;
-        enemy.InitializeShooter(_bulletSpawner);
+        enemy.Initialize(_player, _bulletSpawner);
 
         instance
             .GetComponent<Mover>()
