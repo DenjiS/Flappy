@@ -25,7 +25,7 @@ public abstract class ObjectPool : MonoBehaviour
             item.SetActive(false);
     }
 
-    protected virtual void Awake()
+    private void Awake()
     {
         _minEnabledAreaDistance = MinScreenValue - _enabledAreaExtension;
         _maxEnabledAreaDistance = MaxScreenValue + _enabledAreaExtension;
