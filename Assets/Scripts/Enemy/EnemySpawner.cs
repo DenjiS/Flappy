@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class EnemySpawner : ObjectPool
@@ -7,21 +8,22 @@ public class EnemySpawner : ObjectPool
     [SerializeField] private BulletSpawner _bulletSpawner;
 
     [Header("Spawner")]
-    [SerializeField] private float _delay;
+    [SerializeField] private float _spawnsDelay;
     [SerializeField] private float _maxSpawnPositionY;
     [SerializeField] private float _minSpawnPositionY;
 
-    private float _elapsed = 0;
+    private WaitForSeconds _delay;
+
+    private Coroutine _spawning;
+
+    private void Start()
+    {
+        _delay = new WaitForSeconds(_spawnsDelay);
+    }
 
     private void Update()
     {
-        _elapsed += Time.deltaTime;
-
-        if (_elapsed > _delay)
-        {
-            Spawn();
-            _elapsed = 0;
-        }
+        _spawning ??= StartCoroutine(Spawning());
     }
 
     protected override void ConfigureOnCreation(GameObject instance)
@@ -32,6 +34,13 @@ public class EnemySpawner : ObjectPool
         instance
             .GetComponent<Mover>()
             .SetDirection(Vector2.left);
+    }
+
+    private IEnumerator Spawning()
+    {
+        yield return _delay;
+
+        Spawn();
     }
 
     private void Spawn()
