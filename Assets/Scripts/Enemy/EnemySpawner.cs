@@ -7,7 +7,7 @@ public class EnemySpawner : ObjectPool
     [SerializeField] private BulletSpawner _bulletSpawner;
 
     [Header("Spawner")]
-    [SerializeField] private float _secondsBetweenSpawn;
+    [SerializeField] private float _delay;
     [SerializeField] private float _maxSpawnPositionY;
     [SerializeField] private float _minSpawnPositionY;
 
@@ -17,7 +17,7 @@ public class EnemySpawner : ObjectPool
     {
         _elapsed += Time.deltaTime;
 
-        if (_elapsed > _secondsBetweenSpawn)
+        if (_elapsed > _delay)
         {
             Spawn();
             _elapsed = 0;
